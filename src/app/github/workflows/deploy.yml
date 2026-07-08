@@ -27,7 +27,7 @@ jobs:
       with:
         path: dist/harry-potter-app/browser
 
-Deploy:
+deploy:
   needs: build
   runs-on: ubuntu-latest
 
