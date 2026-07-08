@@ -13,27 +13,28 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
 
-  steps:
-    - uses: actions/checkout@v5
-    - uses: actions/setup-node@v5
-      with:
-        node-version: 24
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
 
-    - run: npmc ci
-    - run: npm run build -- --configuration production --base-href /harry-potter-app/
+      - run: npm ci
 
-    - uses: actions/upload-pages-artifact@v5
-      with:
-        path: dist/harry-potter-app/browser
+      - run: npm run build -- --configuration=production --base-href=/harry-potter-app/
 
-deploy:
-  needs: build
-  runs-on: ubuntu-latest
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: dist/harry-potter-app/browser
 
-  environment:
-    pages: write
-    id-token: write
-
-  steps:
-    -uses: actions/deploy-pages@v5
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+    permissions:
+      pages: write
+      id-token: write
+    steps:
+      - uses: actions/deploy-pages@v4
