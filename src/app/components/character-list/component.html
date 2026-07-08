@@ -1,0 +1,45 @@
+
+<div style="max-width: 1200px; margin: 0 auto; padding: 40px 20px; font-family: 'Segoe UI', sans-serif;">
+  
+  <h1 style="text-align: center; color: #2c3e50; margin-bottom: 40px; font-size: 2.2rem; font-weight: 700;">
+    Personajes de Harry Potter
+  </h1>
+  
+  
+  <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 30px; width: 100%;">
+    
+    @for (character of characters; track character.id) {
+    
+      <div style="background-color: #ffffff; border-radius: 12px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); overflow: hidden; display: flex; flex-direction: column; width: 100%;">
+        
+       
+        <div style="width: 100%; height: 340px; background-color: #f0f0f0;">
+          <img [src]="character.image" [alt]="character.name" style="width: 100%; height: 100%; object-fit: cover;">
+        </div>
+        
+        
+        <div style="padding: 20px; display: flex; flex-direction: column; flex-grow: 1;">
+          <h2 style="font-size: 1.3rem; color: #1a252f; margin: 0 0 12px 0; font-weight: 700; border-bottom: 2px solid #eaeaea; padding-bottom: 8px;">
+            {{ character.name }}
+          </h2>
+          <p style="font-size: 0.95rem; color: #555; margin: 6px 0;">
+            <strong>Casa:</strong> {{ character.house || 'Ninguna' }}
+          </p>
+          <p style="font-size: 0.95rem; color: #555; margin: 6px 0;">
+            <strong>Actor/Actriz:</strong> {{ character.actor || 'No registrado' }}
+          </p>
+          
+        
+          <div style="margin-top: auto; padding-top: 15px;">
+            <span [style.background-color]="character.alive ? '#2ecc71' : '#e74c3c'" 
+                  style="color: white; padding: 5px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; display: inline-block;">
+              {{ character.alive ? 'Vivo' : 'Fallecido' }}
+            </span>
+          </div>
+        </div>
+
+      </div>
+    }
+
+  </div>
+</div>

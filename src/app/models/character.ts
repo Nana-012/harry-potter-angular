@@ -1,0 +1,8 @@
+export interface Character {
+  id: string;
+  name: string;
+  house: string;
+  actor: string;
+  alive: boolean;
+  image: string;
+}
